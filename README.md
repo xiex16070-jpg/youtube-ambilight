@@ -85,6 +85,8 @@ Feel free to
 
 也欢迎给原项目 [WesselKroos/youtube-ambilight](https://github.com/WesselKroos/youtube-ambilight) 点 Star、提 Issue 或 PR。
 
+想给上游提 PR / 想了解上游的贡献要求与分支约定，见 [UPSTREAM-CONTRIBUTING.md](UPSTREAM-CONTRIBUTING.md)。
+
 ## 💝 支持作者
 
 如果这个小扩展陪你多看了几个视频，欢迎 **点个 Star ⭐** 支持一下。
