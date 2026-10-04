@@ -1,7 +1,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE) [![Manifest V3](https://img.shields.io/badge/Manifest-V3-brightgreen.svg)](src/manifest.json) [![GitHub stars](https://img.shields.io/github/stars/xiex16070-jpg/youtube-ambilight?logo=github)](https://github.com/xiex16070-jpg/youtube-ambilight/stargazers)
 
 <a href="https://github.com/xiex16070-jpg/youtube-ambilight#-%E6%94%AF%E6%8C%81%E4%BD%9C%E8%80%85" rel="noopener">
-  <img align="right" src="src/images/donate.svg" title="支持作者 / Support the author" height="33">
+  <img align="right" src="src/images/donate.svg" title="支持作者" height="33">
 </a>
 
 [![Ambient light for YouTube™ & Bilibili](assets/heading.png)](https://github.com/xiex16070-jpg/youtube-ambilight#readme)
@@ -23,20 +23,18 @@ Immerse yourself in YouTube™ and Bilibili videos with ambient light!
 | --- | --- |
 | **B 站支持** | `https://www.bilibili.com/video/*` 视频页 + `https://player.bilibili.com/*` 内嵌播放器 |
 | **B 站布局适配** | 注入元素改为追加到内容节点末尾，避免被 Vue 镜像复用；播放器左侧不再被撑开，右栏标题/信息不再重复渲染 |
-| **右侧列表可读** | 右栏卡片改为半透明，灯光可以透出来，同时文字保持原本的对比度（见 `light-theme.jpg`） |
+| **右侧列表可读** | 右栏卡片改为半透明，灯光可以透出来，同时文字保持原本的对比度（见 `bilibili-video-page.jpg`） |
 | **小窗 / 全屏** | B 站小窗播放器保留光晕、全屏时灯光跟随播放器 |
 | **Manifest V3** | Chrome / Edge 商店只接受 MV3，本仓库默认构建 MV3（同时保留 MV2 构建给 Firefox / 旧版本浏览器） |
 | **打包脚本** | `npm run package` 直接生成可上传商店的 zip |
 
 ## 🖼 截图
 
-| B 站视频页（深色主题） | 设置菜单 |
-| --- | --- |
-| ![video page](assets/readme/bilibili-video-page.jpg) | ![settings](assets/readme/settings-menu.jpg) |
+![B 站视频页（浅色主题，右栏文字清晰）](assets/readme/bilibili-video-page.jpg)
 
-| 浅色主题（右栏文字清晰） | 小窗播放器 |
+| 设置菜单 | 小窗播放器 |
 | --- | --- |
-| ![light theme](assets/readme/light-theme.jpg) | ![mini player](assets/readme/mini-player.jpg) |
+| ![settings menu](assets/readme/settings-menu.jpg) | ![mini player](assets/readme/mini-player.jpg) |
 
 ## 安装 Installation
 
@@ -103,7 +101,7 @@ Feel free to
 
 </div>
 
-> 扩展内的 `Support the author` 链接也会跳到这里。（作者：Akari Akaza · https://github.com/xiex16070-jpg/youtube-ambilight）
+> 扩展内的链接也会跳到这里。（作者：Akari Akaza · https://github.com/xiex16070-jpg/youtube-ambilight）
 
 ## Development
 

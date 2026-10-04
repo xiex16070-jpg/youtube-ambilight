@@ -90,7 +90,7 @@ Open source under the MIT license. Source code and issue tracker: https://github
 | 上传包（Chrome + Edge，MV3） | `npm run package` → `releases/ambient-light-for-youtube-and-bilibili-<version>-chrome-edge-mv3.zip` |
 | 上传包（Firefox / 旧版，MV2） | `releases/...-firefox-mv2.zip` |
 | 商店图标 128x128 | `src/images/icon-128.png`（Edge 300x300：`assets/icons/icon-300-edge.png`） |
-| 截图（1280x800） | `store/screenshots/1..6-*.png` |
+| 截图（1280x800，均为浅色主题） | `store/screenshots/1..4-*.png` |
 | 宣传图 / Promo tiles | `assets/promos/promo-tile-1280x640.png`、`promo-tile-440x280` 对应文件 |
 | 隐私政策 URL | 把 `PRIVACY-POLICY.md` 发布成可访问的网址（例如 GitHub Pages，或直接用 `https://github.com/xiex16070-jpg/youtube-ambilight/blob/main/PRIVACY-POLICY.md`） |
 | 权限理由（单用途说明） | 只申请 `storage`：用于在浏览器本地保存扩展设置，不做任何网络上传 |

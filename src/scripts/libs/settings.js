@@ -447,8 +447,8 @@ But if this happens frequently, here are some possible causes:
 
     const donateLinkImage = document.createElement('img');
     donateLinkImage.className = 'ytpa-donate-link__image';
-    donateLinkImage.alt = 'Support the author (支持作者)';
-    donateLinkImage.title = 'Support the author (支持作者)';
+    donateLinkImage.alt = '支持作者';
+    donateLinkImage.title = '支持作者';
     donateLinkImage.src = `${baseUrl}images/donate.svg`;
     donateLinkImage.height = '23';
     donateLink.appendChild(donateLinkImage);
