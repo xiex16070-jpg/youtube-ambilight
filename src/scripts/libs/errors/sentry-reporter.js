@@ -35,7 +35,14 @@ export const setCrashOptions = (newCrashOptions) => {
 };
 
 let scope;
+
+// Fork build (Akari Akaza): crash reporting is disabled by leaving the DSN empty.
+// The upstream DSN would send crash reports to the original author's Sentry
+// project, which this fork must not do. Put your own Sentry DSN here to enable it.
+const DSN = '';
+
 function initClientAndScope() {
+  if (!DSN) return;
   // Custom fetch transport to prevent iframe injection by Sentry's makeFetchTransport
   // Copied from: https://docs.sentry.io/platforms/javascript/configuration/transports/#custom-transport
   function makeFetchTransport(options) {
@@ -63,8 +70,8 @@ function initClientAndScope() {
   }
 
   const client = new BrowserClient({
-    enabled: true,
-    dsn: 'https://a3d06857fc2d401690381d0878ce3bc3@o288593.ingest.us.sentry.io/1524536',
+    enabled: !!DSN,
+    dsn: DSN,
     transport: makeFetchTransport,
     stackParser: defaultStackParser,
     integrations: [
@@ -224,6 +231,11 @@ export default class SentryReporter {
         }
       } catch (ex) {
         console.warn(ex);
+        return;
+      }
+
+      if (!DSN) {
+        // Crash reporting is disabled in this fork build (no DSN configured).
         return;
       }
 

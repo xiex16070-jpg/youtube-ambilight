@@ -1,14 +1,8 @@
 # Privacy policy
 - This extension only runs on tabs that start with the url https://www.youtube.com or https://www.bilibili.com (including the embedded player at https://player.bilibili.com). The extension will only activate the ambient light effect on a YouTube video page and on a Bilibili video page.
-- The only requests being sent are crash reports. (But crash reports can be turned off.) No other requests are sent to any webserver, website or api. But in case a crash occurs the report is sent to [Sentri.io](https://sentry.io) and will always be deleted after 30 days. Because the only goal of these crash reports is to fix the crash.
+- This build does not collect, store or send any user data. No requests are sent to any webserver, website or api. There is no crash reporting, no analytics and no remote code inside the extension.
+- Crash reporting has been disabled in this fork. The original project sent crash reports to [Sentry.io](https://sentry.io) through the original author's Sentry project; this fork ships an empty Sentry DSN, so no report is ever created or transmitted.
+- All settings are stored locally by your browser (`chrome.storage` / `browser.storage`) on your own device and are never uploaded. You can review, export or remove them at any time from the extension options page, or by removing the extension.
 
-## Crash report data
-Crash reports, and individual groups of data, can be turned off. But in case a crash report is sent it could contain:
-- The url and video ID being watched at the time of the crash
-- Anonymous technical data
-    - Browser version
-    - Operating system version
-    - Display capabilities
-    - Videoplayer state (Does not contain the video id or title)
-    - Video page layout state (Does not contain your YouTube or Bilibili account data)
-- Ambient light state and error information
+## Data we collect
+None. The extension requests no permission other than `storage`, which is used to keep your settings in your browser's local storage.

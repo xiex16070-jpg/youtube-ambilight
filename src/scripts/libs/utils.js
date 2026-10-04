@@ -68,12 +68,12 @@ export const getFeedbackFormLink = (version) => {
 
 const privacyPolicyLinks = {
   Firefox:
-    'https://addons.mozilla.org/firefox/addon/youtube-ambientlight/privacy/',
+    'https://github.com/xiex16070-jpg/youtube-ambilight/blob/main/PRIVACY-POLICY.md',
 };
 export const getPrivacyPolicyLink = () => {
   const browser = getBrowser();
   return (
     privacyPolicyLinks[browser] ||
-    'https://github.com/WesselKroos/youtube-ambilight#privacy--security'
+    'https://github.com/xiex16070-jpg/youtube-ambilight/blob/main/PRIVACY-POLICY.md'
   );
 };

@@ -72,7 +72,7 @@ Chrome Web Store 与 Microsoft Edge Add-ons 的上架包由 `npm run package` �
 | Manifest V2（`npm run package` 的 mv2 包） | Firefox | 74 | [可选链操作符 (?.)](https://caniuse.com/mdn-javascript_operators_optional_chaining) |
 
 ## Privacy & Security
-Read the [privacy policy](PRIVACY-POLICY.md)（扩展只在 `youtube.com` 与 `bilibili.com` 的视频页运行，除崩溃报告外不发送任何请求）。
+Read the [privacy policy](PRIVACY-POLICY.md)（扩展只在 `youtube.com` 与 `bilibili.com` 的视频页运行，不发送任何网络请求、不收集任何数据）。
 
 ## Report, request or contribute
 
