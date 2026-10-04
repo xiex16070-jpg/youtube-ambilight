@@ -1,0 +1,66 @@
+{
+  "name": "youtube-ambientlight",
+  "version": "2.38.17",
+  "description": "This browser extension adds ambient light to the videos you view on YouTube and Bilibili",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xiex16070-jpg/youtube-ambilight.git"
+  },
+  "author": "Akari Akaza (https://github.com/xiex16070-jpg)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xiex16070-jpg/youtube-ambilight/issues"
+  },
+  "homepage": "https://github.com/xiex16070-jpg/youtube-ambilight#readme",
+  "type": "module",
+  "scripts": {
+    "build:manifest": "node manifest-copy.js",
+    "build:html": "copyfiles -u 1 src/options.html dist",
+    "build:images": "copyfiles -u 2 src/images/* dist/images",
+    "build:styles:content": "sass --no-source-map src/styles/content.scss dist/styles/content.css",
+    "build:styles:live-chat": "sass --no-source-map src/styles/live-chat.scss dist/styles/live-chat.css",
+    "build:styles:options": "copyfiles -u 2 src/styles/options.css dist/styles",
+    "build:styles": "run-p build:styles:content build:styles:live-chat build:styles:options",
+    "build:scripts:rollup": "rollup -c",
+    "build:scripts:sourcemaps:inject": "sentry-cli sourcemaps inject ./dist/scripts --release=2.38.17",
+    "build:scripts:sourcemaps:copy": "node sourcemaps-copy.js",
+    "build:scripts:sourcemaps": "run-s build:scripts:sourcemaps:inject build:scripts:sourcemaps:copy",
+    "build:scripts": "run-s build:scripts:rollup build:scripts:sourcemaps",
+    "build": "run-s build:scripts build:styles build:manifest build:html build:images",
+    "build:dist": "run-s build:scripts:rollup build:styles build:manifest build:html build:images",
+    "build:manifest:mv2": "node manifest-copy.js --mv2",
+    "package": "run-s build:dist package:store",
+    "package:store": "node package.js",
+    "upload-sourcemaps": "dotenvx run -f .env -f .env.local --overload -- sentry-cli sourcemaps upload ./sourcemaps --release=2.38.17"
+  },
+  "engines": {
+    "node": "22.5.1"
+  },
+  "volta": {
+    "node": "22.5.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.21.8",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/plugin-proposal-optional-chaining": "^7.21.0",
+    "@dotenvx/dotenvx": "^1.45.1",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-eslint": "^9.0.5",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@sentry/browser": "^9.27.0",
+    "@sentry/cli": "^2.46.0",
+    "babel-plugin-transform-replace-expressions": "^0.2.0",
+    "copyfiles": "^2.4.1",
+    "eslint": "^9.28.0",
+    "globals": "^16.2.0",
+    "npm-run-all": "^4.1.5",
+    "replace-in-file": "^8.3.0",
+    "rollup": "^4.42.0",
+    "sass": "^1.62.1"
+  },
+  "overrides": {
+    "@rollup/plugin-eslint": {
+      "eslint": "$eslint"
+    }
+  }
+}

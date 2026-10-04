@@ -1,0 +1,18 @@
+# Normalise line endings in the repository
+* text=auto eol=lf
+
+# Binary assets
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.ico binary
+*.gif binary
+*.webp binary
+*.psd binary
+*.zip binary
+*.woff binary
+*.woff2 binary
+
+# Keep built artefacts out of diffs
+dist/** linguist-generated=true
+package-lock.json linguist-generated=true

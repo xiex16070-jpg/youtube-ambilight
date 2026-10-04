@@ -1,0 +1,109 @@
+{
+  "manifest_version": 3,
+  "name": "Ambient light for YouTube™ & Bilibili",
+  "description": "Immerse yourself in YouTube™ and Bilibili videos with ambient light!",
+  "version": "0.0.0",
+  "homepage_url": "https://github.com/xiex16070-jpg/youtube-ambilight",
+  "author": "Akari Akaza",
+  "icons": {
+    "16": "images/icon-16.png",
+    "32": "images/icon-32.png",
+    "128": "images/icon-128.png"
+  },
+  "minimum_chrome_version": "121",
+  "browser_specific_settings": {
+    "gecko": {
+      "strict_min_version": "121.0",
+      "id": "{9d7c1f4e-3a52-4b8e-9f60-7c2a5b1d8e34}"
+    }
+  },
+  "action": {
+    "default_icon": {
+      "16": "images/icon-16.png",
+      "24": "images/icon-24.png",
+      "32": "images/icon-32.png"
+    },
+    "default_popup": "options.html"
+  },
+  "background": {
+    "service_worker": "scripts/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.youtube.com/*",
+        "https://www.bilibili.com/*"
+      ],
+      "exclude_matches": [
+        "https://www.youtube.com/live_chat*",
+        "https://www.youtube.com/embed/*"
+      ],
+      "js": [
+        "scripts/content.js"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "https://www.youtube.com/embed/*"
+      ],
+      "js": [
+        "scripts/content.js"
+      ],
+      "all_frames": true,
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "https://player.bilibili.com/*"
+      ],
+      "js": [
+        "scripts/content.js"
+      ],
+      "all_frames": true,
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "https://www.youtube.com/live_chat*"
+      ],
+      "exclude_matches": [
+        "https://www.youtube.com/live_chat?is_popout=1*"
+      ],
+      "css": [
+        "styles/live-chat.css"
+      ],
+      "js": [
+        "scripts/live-chat.js"
+      ],
+      "all_frames": true,
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "styles/options.css",
+        "styles/content.css",
+        "scripts/content-main.js",
+        "scripts/injected.js",
+        "images/noise-1.png",
+        "images/noise-2.png",
+        "images/noise-3.png",
+        "images/donate.svg"
+      ],
+      "matches": [
+        "https://www.youtube.com/*",
+        "https://www.bilibili.com/*",
+        "https://player.bilibili.com/*"
+      ]
+    }
+  ],
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": false
+  },
+  "permissions": [
+    "storage"
+  ]
+}
