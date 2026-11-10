@@ -17,7 +17,7 @@ for (const elem of toggles) {
 if (!chrome?.storage?.local?.onChanged) {
   const synchronizationWarning = document.createElement('div');
   synchronizationWarning.textContent =
-    "Unable to synchronize any crash option changes to youtube pages that are already open. Make sure to refresh any open youtube pages after you've changed an option.";
+    '无法将崩溃报告设置同步到已打开的 YouTube 页面。更改选项后，请刷新已打开的 YouTube 页面。';
   synchronizationWarning.classList.add('warning');
   document
     .querySelector('.warnings-container')
@@ -37,11 +37,11 @@ const importSettings = async (storageName, importJson) => {
     importExportStatusDetails.scrollTo(0, 0);
 
     const jsonString = await importJson();
-    if (!jsonString) throw new Error('No settings found to import');
+    if (!jsonString) throw new Error('没有找到可导入的设置');
 
     let importedObject = JSON.parse(jsonString);
     if (typeof importedObject !== 'object')
-      throw new Error('No settings found to import');
+      throw new Error('没有找到可导入的设置');
 
     // Temporarely import the setting blur as blur2
     // https://github.com/WesselKroos/youtube-ambilight/issues/191#issuecomment-1703792823
@@ -61,9 +61,9 @@ const importSettings = async (storageName, importJson) => {
       const setting = SettingsConfig.find((setting) => setting.name === name);
       if (!setting) {
         importWarnings.push(
-          `Skipped "${name}": ${JSON.stringify(
+          `已跳过“${name}”：${JSON.stringify(
             value
-          )}. This settings might have been removed or migrated to another name after an update.`
+          )}。该设置可能已在更新后移除或更名。`
         );
         continue;
       }
@@ -72,41 +72,41 @@ const importSettings = async (storageName, importJson) => {
       if (type === 'checkbox' || type === 'section') {
         if (typeof value !== 'boolean') {
           importWarnings.push(
-            `Skipped "${name}": ${JSON.stringify(value)} is not a boolean.`
+            `已跳过“${name}”：${JSON.stringify(value)} 不是布尔值。`
           );
           continue;
         }
       } else if (type === 'list') {
         if (typeof value !== 'number') {
           importWarnings.push(
-            `Skipped "${name}": ${JSON.stringify(value)} is not a number.`
+            `已跳过“${name}”：${JSON.stringify(value)} 不是数字。`
           );
           continue;
         }
         const valueRoundingLeft = ((value - min) * 1000) % (step * 1000);
         if (valueRoundingLeft !== 0) {
           importWarnings.push(
-            `Rounded down "${name}": ${JSON.stringify(
+            `已向下取整“${name}”：${JSON.stringify(
               value
-            )} is not in steps of ${step}${
-              min === undefined ? '' : ` from ${min}`
-            }.`
+            )} 不符合步长 ${step}${
+              min === undefined ? '' : `（起始值 ${min}）`
+            }。`
           );
           value = Math.round(value * 1000 - valueRoundingLeft) / 1000;
         }
         if (min !== undefined && value < min) {
           importWarnings.push(
-            `Clipped "${name}": ${JSON.stringify(
+            `已调整“${name}”：${JSON.stringify(
               value
-            )} is lower than the minimum of ${min}.`
+            )} 低于最小值 ${min}。`
           );
           value = min;
         }
         if (max !== undefined && value > max) {
           importWarnings.push(
-            `Clipped "${name}": ${JSON.stringify(
+            `已调整“${name}”：${JSON.stringify(
               value
-            )} is higher than the maximum of ${max}.`
+            )} 高于最大值 ${max}。`
           );
           value = max;
         }
@@ -116,16 +116,16 @@ const importSettings = async (storageName, importJson) => {
     }
 
     if (!Object.keys(settings).length)
-      throw new Error('No settings found to import');
+      throw new Error('没有找到可导入的设置');
 
     await storage.set(settings);
 
-    importExportStatus.textContent = `Imported ${
+    importExportStatus.textContent = `已从${storageName || '文件'}导入 ${
       Object.keys(settings).length
-    } settings from ${storageName}.
-(Refresh any open YouTube browser tabs to use the new settings.)${
+    } 项设置。
+（请刷新已打开的 YouTube 页面以应用新设置。）${
       importWarnings.length
-        ? `\n\nWith ${importWarnings.length} warnings:\n- ${importWarnings.join(
+        ? `\n\n共 ${importWarnings.length} 条提示：\n- ${importWarnings.join(
             '\n- '
           )}`
         : ''
@@ -135,7 +135,7 @@ const importSettings = async (storageName, importJson) => {
     }
     importWarnings = [];
 
-    importExportStatusDetails.textContent = `View imported settings (Click to view)\nNote: The blur setting is internally converted to blur2\n\n${Object.keys(
+    importExportStatusDetails.textContent = `查看已导入的设置（点击展开）\n说明：blur 设置会在内部转换为 blur2\n\n${Object.keys(
       settings
     )
       .map(
@@ -146,9 +146,13 @@ const importSettings = async (storageName, importJson) => {
       )
       .join('\n')}`;
   } catch (ex) {
-    console.error('Failed to import settings', ex);
+    console.error('导入设置失败', ex);
     importExportStatus.classList.add('has-error');
-    importExportStatus.textContent = `Failed to import settings: \n${ex?.message}`;
+    const errorMessage =
+      ex instanceof SyntaxError
+        ? '设置数据格式无效，请选择有效的 JSON 数据。'
+        : ex?.message;
+    importExportStatus.textContent = `导入设置失败：\n${errorMessage}`;
   }
 };
 const exportSettings = async (storageName, exportJson) => {
@@ -175,7 +179,7 @@ const exportSettings = async (storageName, exportJson) => {
     }
     if (!Object.keys(exportObject).length)
       throw new Error(
-        'Nothing to export. All settings still have their default values.'
+        '没有可导出的更改，所有设置仍为默认值。'
       );
 
     // Temporarely export the setting blur2 as blur
@@ -191,18 +195,18 @@ const exportSettings = async (storageName, exportJson) => {
 
     const jsonString = JSON.stringify(exportObject, null, 2);
     await exportJson(jsonString);
-    importExportStatus.textContent = `Exported ${
+    importExportStatus.textContent = `已导出 ${
       Object.keys(exportObject).length
-    } settings to ${storageName}`;
-    importExportStatusDetails.textContent = `View exported settings (Click to view)\n\n${Object.keys(
+    } 项设置${storageName ? `到${storageName}` : '到文件'}`;
+    importExportStatusDetails.textContent = `查看已导出的设置（点击展开）\n\n${Object.keys(
       exportObject
     )
       .map((key) => `${key}: ${JSON.stringify(exportObject[key])}`)
       .join('\n')}`;
   } catch (ex) {
-    console.error('Failed to export settings', ex);
+    console.error('导出设置失败', ex);
     importExportStatus.classList.add('has-error');
-    importExportStatus.textContent = `Failed to export settings: \n${ex?.message}`;
+    importExportStatus.textContent = `导出设置失败：\n${ex?.message}`;
   }
 };
 
@@ -211,7 +215,7 @@ const importFileInput = document.querySelector('[name="import-settings-file"]');
 on(importFileInput, 'change', async () => {
   if (!importFileInput.files.length) return;
 
-  await importSettings('a file', async () => {
+  await importSettings('文件', async () => {
     return await new Promise((resolve, reject) => {
       try {
         const reader = new FileReader();
@@ -238,7 +242,7 @@ on(exportFileButton, 'click', async () => {
     link.setAttribute('download', 'ambient-light-for-youtube-settings.json');
     link.setAttribute(
       'title',
-      'If the automatic download was blocked:\n1. Right click on this link \n2. Click on "Save link as..."'
+      '如果自动下载被拦截：\n1. 右键点击此链接\n2. 点击“链接另存为...”'
     );
     link.style.display = 'block';
     link.style.marginTop = '0';
@@ -255,14 +259,14 @@ on(exportFileButton, 'click', async () => {
 
 const importAccountButton = document.querySelector('#importAccountBtn');
 on(importAccountButton, 'click', async () => {
-  await importSettings('cloud storage', async () => {
+  await importSettings('云端', async () => {
     return await syncStorage.get('settings');
   });
 });
 
 const exportAccountButton = document.querySelector('#exportAccountBtn');
 on(exportAccountButton, 'click', async () => {
-  await exportSettings('cloud storage', async (jsonString) => {
+  await exportSettings('云端', async (jsonString) => {
     await syncStorage.set('settings', jsonString);
     await syncStorage.set('settings-date', new Date().toJSON());
   });
@@ -275,7 +279,7 @@ const updateImportableAccountStatus = async () => {
   const jsonString = await syncStorage.get('settings-date');
   if (jsonString) {
     const settingsDate = new Date(jsonString);
-    importableAccountStatus.textContent = `Last cloud storage export was on: ${settingsDate.toLocaleDateString()} at ${settingsDate.toLocaleTimeString()}`;
+    importableAccountStatus.textContent = `最近一次云端导出：${settingsDate.toLocaleString('zh-CN')}`;
     importAccountButton.disabled = false;
   } else {
     importableAccountStatus.textContent = '';

@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
-  "name": "Ambient light for YouTube™ & Bilibili",
-  "description": "Immerse yourself in YouTube™ and Bilibili videos with ambient light!",
+  "name": "YouTube™ 与哔哩哔哩氛围灯",
+  "description": "为 YouTube™ 和哔哩哔哩视频添加随画面变化的氛围灯光。",
   "version": "0.0.0",
   "homepage_url": "https://github.com/xiex16070-jpg/youtube-ambilight",
   "author": "Akari Akaza",

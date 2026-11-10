@@ -1,7 +1,7 @@
 {
   "name": "youtube-ambientlight",
   "version": "2.38.17",
-  "description": "This browser extension adds ambient light to the videos you view on YouTube and Bilibili",
+  "description": "为 YouTube™ 和哔哩哔哩视频添加随画面变化的氛围灯光",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/xiex16070-jpg/youtube-ambilight.git"

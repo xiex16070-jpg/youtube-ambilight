@@ -232,9 +232,9 @@ export default class Theming {
           const withinThresshold = now - 10000 < lastFailedThemeToggle;
           if (withinThresshold) {
             this.settings.setWarning(
-              `Because the previous attempt failed and to prevent repeated page refreshes we temporarily disabled the automatic toggle to the ${
-                this.isDarkTheme() ? 'light' : 'dark'
-              } appearance for 10 seconds.\n\nSet the "Appearance (theme)" setting to "Default" to disable the automatic appearance toggle permanently if it keeps on failing.\n(And let me know via the feedback form that it failed so that I can fix it in the next version of the extension)`
+              `上次切换主题失败。为避免网页反复刷新，已暂时停用自动切换到${
+                this.isDarkTheme() ? '浅色' : '深色'
+              }主题的功能 10 秒。\n\n如果问题持续发生，请将“常规 > 外观主题”设为“跟随浏览器”，以永久停用自动切换。\n也欢迎通过反馈表告知问题，便于在后续版本中修复。`
             );
             this.updatingTheme = false;
             return;
@@ -281,11 +281,11 @@ export default class Theming {
     this.themeToggleFailed = true;
     await storage.set('last-failed-theme-toggle', new Date().getTime());
     this.settings.setWarning(
-      `Failed to toggle the page theme to from ${
-        wasDark ? 'dark' : 'light'
-      } to ${
-        isDark ? 'dark' : 'light'
-      } mode.\n\nSet the "Appearance (theme)" setting to "Default" to disable the automatic appearance toggle permanently if it keeps on failing.\n(And let me know via the feedback form that it failed so that I can fix it in the next version of the extension)`
+      `网页主题切换失败：无法从${
+        wasDark ? '深色' : '浅色'
+      }模式切换到${
+        isDark ? '深色' : '浅色'
+      }模式。\n\n如果问题持续发生，请将“常规 > 外观主题”设为“跟随浏览器”，以永久停用自动切换。\n也欢迎通过反馈表告知问题，便于在后续版本中修复。`
     );
   }
 

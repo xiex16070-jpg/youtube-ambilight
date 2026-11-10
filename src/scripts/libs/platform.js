@@ -8,7 +8,7 @@
  *
  * YouTube markup            | Bilibili markup
  * --------------------------|------------------------------------------------
- * ytd-app                   | #app (div.app-v1)
+ * ytd-app                   | #app / #__next
  * #content.ytd-app          | #mirror-vdcon.video-container-v1
  * ytd-watch-flexy           | #mirror-vdcon.video-container-v1
  * .html5-video-player       | .bpx-player-video-area
@@ -121,14 +121,22 @@ const configs = {
     isWatchPageUrl: isBilibiliWatchPageUrl,
     isEmbedPageUrl: isBilibiliEmbedPageUrl,
 
-    appSelectors: ['#app', '#bilibili-player'],
+    // The Bangumi React page uses #__next instead of #app. Observe this stable
+    // page root so a player created or replaced after startup is still detected.
+    appSelectors: ['#app', '#__next', '#bilibili-player'],
     contentSelectors: [
       '#mirror-vdcon.video-container-v1',
+      '#__next',
       '.video-container-v1',
       '.bpx-player-container',
       '#bilibili-player',
     ],
-    watchSelectors: ['#mirror-vdcon', '.video-container-v1'],
+    watchSelectors: [
+      '#mirror-vdcon',
+      '.video-container-v1',
+      '.bpx-player-container',
+      '#bilibili-player',
+    ],
     // The header bar is the element the ambient light has to shine through: it is
     // fixed and paints above the content (z-index 1002), so it covered the light in
     // the top strip of the page. Like YouTube's masthead it is made transparent

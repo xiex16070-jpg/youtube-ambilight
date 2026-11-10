@@ -1,8 +1,10 @@
-# Privacy policy
-- This extension only runs on tabs that start with the url https://www.youtube.com or https://www.bilibili.com (including the embedded player at https://player.bilibili.com). The extension will only activate the ambient light effect on a YouTube video page and on a Bilibili video page.
-- This build does not collect, store or send any user data. No requests are sent to any webserver, website or api. There is no crash reporting, no analytics and no remote code inside the extension.
-- Crash reporting has been disabled in this fork. The original project sent crash reports to [Sentry.io](https://sentry.io) through the original author's Sentry project; this fork ships an empty Sentry DSN, so no report is ever created or transmitted.
-- All settings are stored locally by your browser (`chrome.storage` / `browser.storage`) on your own device and are never uploaded. You can review, export or remove them at any time from the extension options page, or by removing the extension.
+# 隐私政策
 
-## Data we collect
-None. The extension requests no permission other than `storage`, which is used to keep your settings in your browser's local storage.
+- 本扩展仅在网址以 `https://www.youtube.com`、`https://www.bilibili.com` 开头的标签页中运行（也包括 `https://player.bilibili.com` 内嵌播放器），并且只会在 YouTube 或哔哩哔哩视频页面启用氛围灯效果。
+- 本版本不会收集、保存或发送任何用户数据，也不会向网站或服务器发送网络请求。扩展不包含崩溃上报、数据统计或远程代码。
+- 此分支已停用崩溃上报。原项目曾通过作者的 Sentry 项目发送崩溃报告；此分支使用空的 Sentry DSN，因此不会创建或传输任何报告。
+- 所有设置都保存在你设备上的浏览器本地存储（`chrome.storage`／`browser.storage`）中，不会上传。你可以在扩展设置页查看、导出或删除这些设置，也可以卸载扩展以移除它们。
+
+## 收集的数据
+
+不收集任何数据。扩展只申请 `storage` 权限，用于在浏览器本地保存设置。

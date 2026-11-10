@@ -85,15 +85,12 @@ export default class Settings {
     const warningTimeout = setTimeout(
       () =>
         setWarning(
-          `It is taking more than 5 seconds to load your previous settings.
-If this is your first warning and it does not disappear, then the extension might have updated. 
-You can reload the webpage to complete the update.
+          `加载之前保存的设置已超过 5 秒。
+如果这是首次出现且提示没有消失，可能是扩展刚刚更新；刷新网页即可完成更新。
 
-But if this happens frequently, here are some possible causes:
-- Another extension is blocking code execution on this webpage for a long duration.
-  Disable other extensions temporarely to find out which one it is.
-- If your computer is very slow or frequently freezing in other applications as well,
-  there could be a problem with your hardware, likely the memory (DDR).`
+如果此情况频繁发生，可能是以下原因：
+- 其他扩展长时间阻止此网页执行代码。可以暂时停用其他扩展，逐一排查。
+- 如果电脑运行缓慢，或其他应用也经常卡死，可能是硬件问题，例如内存故障。`
         ),
       5000
     );
@@ -180,9 +177,7 @@ But if this happens frequently, here are some possible causes:
     try {
       storedSettings = await Settings.getStoredSettingsCached();
     } catch {
-      this.setWarning(
-        'Your previous settings cannot be loaded because the extension could have been updated.\nRefresh the page to retry again.'
-      );
+      this.setWarning('无法加载之前保存的设置，扩展可能刚刚更新。\n请刷新页面后重试。');
     }
 
     const webGLCrash = storedSettings['setting-webGLCrash'];
@@ -274,12 +269,12 @@ But if this happens frequently, here are some possible causes:
     if (this.webGLCrashDate) {
       descriptionText += `${
         disabledText
-          ? '\r\nAnd the WebGL renderer previously failed'
-          : 'Failed to load'
-      } at ${this.webGLCrashDate.toLocaleTimeString()} ${this.webGLCrashDate.toLocaleDateString()}`;
-      descriptionText += `\r\n\r\nCheck the Hardware acceleration and WebGL settings in your browser or click on the link "troubleshoot performance problems" at the top of this menu to troubleshoot this problem.`;
+          ? '\r\nWebGL 渲染器此前也曾加载失败'
+          : '加载失败'
+      }，时间：${this.webGLCrashDate.toLocaleTimeString('zh-CN')} ${this.webGLCrashDate.toLocaleDateString('zh-CN')}`;
+      descriptionText += `\r\n\r\n请检查浏览器中的硬件加速和 WebGL 设置，或点击菜单顶部的“性能问题排查”链接。`;
       if (!disabledText)
-        descriptionText += `\r\n\r\nNote: You can re-enable this setting to try it again. In case the WebGL renderer fails again we will update the time at which it failed.`;
+        descriptionText += `\r\n\r\n提示：你可以重新启用此选项再试一次。如果 WebGL 渲染器再次加载失败，失败时间会更新。`;
     }
     descriptionElem.textContent = descriptionText;
   };
@@ -288,7 +283,7 @@ But if this happens frequently, here are some possible causes:
     const elem = document.createElement('div');
     elem.className = `ytp-popup ytp-settings-menu ytp-rounded-menu ytpa-ambientlight-settings-menu ${
       this.advancedSettings ? 'ytpa-ambientlight-settings-menu--advanced' : ''
-    }`;
+    } ${isBilibiliPlatform ? 'ytpa-ambientlight-settings-menu--bilibili' : ''}`;
     elem.id = 'ytp-id-190';
 
     const panel = document.createElement('div');
@@ -349,7 +344,7 @@ But if this happens frequently, here are some possible causes:
 
     const warningCloseButton = document.createElement('button');
     warningCloseButton.className = 'ytpa-warning-close-btn';
-    warningCloseButton.title = 'Close warning';
+    warningCloseButton.title = '关闭提示';
     warning.appendChild(warningCloseButton);
 
     const info = document.createElement('div');
@@ -382,14 +377,14 @@ But if this happens frequently, here are some possible causes:
     const troubleshootLink = document.createElement('a');
     troubleshootLink.className = 'ytpa-feedback-link';
     troubleshootLink.href =
-      'https://github.com/WesselKroos/youtube-ambilight/blob/master/TROUBLESHOOT.md';
+      'https://github.com/xiex16070-jpg/youtube-ambilight/blob/main/TROUBLESHOOT.zh-CN.md';
     troubleshootLink.target = '_blank';
     troubleshootLink.rel = 'noopener';
     header1Label.appendChild(troubleshootLink);
 
     const troubleshootLinkText = document.createElement('span');
     troubleshootLinkText.className = 'ytpa-feedback-link__text';
-    troubleshootLinkText.textContent = 'Troubleshoot performance problems';
+    troubleshootLinkText.textContent = '性能问题排查';
     troubleshootLink.appendChild(troubleshootLinkText);
 
     const toolbar = document.createElement('div');
@@ -403,15 +398,15 @@ But if this happens frequently, here are some possible causes:
 
     const importTooltip = document.createElement('span');
     importTooltip.className = 'ytpa-export-import-settings-btn__tooltip';
-    importTooltip.textContent = `How to export or import settings: 
-1. Click on the extension icon to open the option. 
-2. Scroll down to "Import / Export settings"`;
+    importTooltip.textContent = `导入或导出设置：
+1. 点击浏览器工具栏中的扩展图标打开设置页。
+2. 向下滚动到“导入／导出设置”`;
     importBtn.appendChild(importTooltip);
 
     const resetBtn = document.createElement('button');
     resetBtn.className = 'ytpa-reset-settings-btn';
     resetBtn.type = 'button';
-    resetBtn.title = 'Reset all settings';
+    resetBtn.title = '重置所有设置';
     toolbar.appendChild(resetBtn);
 
     const header2 = document.createElement('div');
@@ -435,7 +430,7 @@ But if this happens frequently, here are some possible causes:
 
     const feedbackLinkText = document.createElement('span');
     feedbackLinkText.className = 'ytpa-feedback-link__text';
-    feedbackLinkText.textContent = 'Give feedback or a rating';
+    feedbackLinkText.textContent = '提交反馈或评价';
     feedbackLink.appendChild(feedbackLinkText);
 
     const donateLink = document.createElement('a');
@@ -476,7 +471,7 @@ But if this happens frequently, here are some possible causes:
         labelKey.contentEditable = true;
         labelKey.className = 'ytpa-menuitem-key';
         labelKey.title =
-          'Click here and press a key to change the hotkey\n(Or press the escape key to disable this hotkey)';
+          '点击此处并按下按键以更改快捷键\n（按 Esc 可停用此快捷键）';
         labelKey.textContent = setting.key;
         labelElems.push(labelKey);
 
@@ -546,9 +541,9 @@ But if this happens frequently, here are some possible causes:
         checkbox.ariaChecked = value ? 'true' : 'false';
         if (setting.disabled) {
           checkbox.ariaDisabled = 'true';
-          checkbox.title = 'This setting is unavailable';
+          checkbox.title = '此设置当前不可用';
         } else {
-          checkbox.title = 'Right click to reset';
+          checkbox.title = '右键点击可恢复默认值';
           checkbox.tabindex = '0';
         }
         sectionContent.appendChild(checkbox);
@@ -618,7 +613,7 @@ But if this happens frequently, here are some possible causes:
           setting.snapPoints ? 'ytp-menuitem-range--has-snap-points' : ''
         }`;
         range.setAttribute('rowspan', '2');
-        range.title = 'Right click to reset';
+        range.title = '右键点击可恢复默认值';
         wrapper.appendChild(range);
 
         const input = document.createElement('input');
@@ -651,7 +646,7 @@ But if this happens frequently, here are some possible causes:
             option.className = `setting-range-datalist__label ${
               flip ? 'setting-range-datalist__label--flip' : ''
             }`;
-            option.title = `Set to ${hiddenLabel || label}`;
+            option.title = `设为${hiddenLabel || label}`;
             option.style.marginLeft = `${
               (value + -setting.min) * (100 / (setting.max - setting.min))
             }%`;
@@ -684,12 +679,12 @@ But if this happens frequently, here are some possible causes:
     this.settingsMenuBtnTooltipText = document.createElement('span');
     this.settingsMenuBtnTooltipText.className = 'ytp-tooltip-bottom-text';
     this.settingsMenuBtnTooltipText.appendChild(
-      document.createTextNode('Ambient light loading is paused.')
+      document.createTextNode('氛围灯正在等待加载。')
     );
     this.settingsMenuBtnTooltipText.appendChild(document.createElement('br'));
     this.settingsMenuBtnTooltipText.appendChild(
       document.createTextNode(
-        'Waiting for the video and page to be loaded first...'
+        '等待视频和网页加载完成……'
       )
     );
     settingsMenuBtnTooltipTextWrapper.prepend(this.settingsMenuBtnTooltipText);
@@ -727,9 +722,7 @@ But if this happens frequently, here are some possible causes:
     );
     on(resetSettingsBtnElem, 'click', async () => {
       if (
-        !confirm(
-          'Are you sure you want to reset ALL the settings and reload the watch page?'
-        )
+        !confirm('确定要重置所有设置并重新加载当前视频页面吗？')
       )
         return;
 
@@ -1712,7 +1705,7 @@ But if this happens frequently, here are some possible causes:
     if (!this.menuBtn.classList.contains('is-loading')) return;
 
     this.menuBtn.classList.remove('is-loading');
-    this.settingsMenuBtnTooltipText.textContent = 'Ambient light settings';
+    this.settingsMenuBtnTooltipText.textContent = '氛围灯设置';
 
     this.showUpdatesMessage();
   };
@@ -1721,9 +1714,9 @@ But if this happens frequently, here are some possible causes:
     const message = ex?.message ?? typeof ex;
     if (this.menuBtn?.classList?.contains?.('is-loading')) {
       this.menuBtn.classList.add('has-warning');
-      this.settingsMenuBtnTooltipText.textContent = `Ambient light failed to load:\n${message}`;
+      this.settingsMenuBtnTooltipText.textContent = `氛围灯加载失败：\n${message}`;
     } else {
-      this.setWarning(`An error occured:\n${message}`, true);
+      this.setWarning(`发生错误：\n${message}`, true);
     }
   };
 
@@ -2087,16 +2080,12 @@ But if this happens frequently, here are some possible causes:
       }
     } catch (ex) {
       if (ex.message.includes('QuotaExceededError')) {
-        this.setWarning(
-          'The changes could not be saved because the settings have changed too often.\nWait a few seconds...'
-        );
+        this.setWarning('设置变更过于频繁，暂时无法保存。\n请稍等几秒后重试。');
         return;
       }
 
       if (ex.message === 'uninstalled') {
-        this.setWarning(
-          'The changes could not be saved because the extension has been updated.\nRefresh the webpage to reload the updated extension.'
-        );
+        this.setWarning('扩展更新后无法保存设置变更。\n请刷新网页以重新加载扩展。');
         return;
       }
 
@@ -2202,8 +2191,7 @@ But if this happens frequently, here are some possible causes:
 
       this.updateItemElem.style.display = '';
       this.menuBtn.classList.toggle('has-updates', true);
-      this.menuBtn.title =
-        "Ambient light has been updated with new settings\nClick to see what's new";
+      this.menuBtn.title = '氛围灯已更新设置\n点击查看更新内容';
       this.showingUpdatesMessage = true;
     } catch (ex) {
       SentryReporter.captureException(ex);

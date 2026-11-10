@@ -26,13 +26,8 @@ injectedScript.addMessageListener('error', (injectedEx) => {
 const setResourceWarning = (url) => {
   setWarning(
     url
-      ? `Failed to load a resource. Reload the webpage to try it again. 
-This can happen after you have updated the extension. 
-
-Or if this happens often, view the error in your browser's DevTools javascript console panel. 
-Tip: Look for errors about this url: ${url}`
-      : `Failed to load the extension on this webpage because it has been updated, reloaded or uninstalled. 
-Reload the webpage to reload the extension.`
+      ? `资源加载失败，请刷新网页后重试。\n扩展更新后可能会出现此情况。\n\n如果频繁发生，请在浏览器开发者工具的控制台中查看错误。\n提示：查找与此网址相关的错误：${url}`
+      : `扩展已更新、重新加载或卸载，因此无法在此网页中加载。\n请刷新网页以重新加载扩展。`
   );
 };
 
