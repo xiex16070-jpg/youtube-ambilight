@@ -451,7 +451,7 @@ const loadAmbientlight = async () => {
     await Settings.getStoredSettingsCached();
   } catch (ex) {
     setWarning(
-      `Your previous settings cannot be loaded. Refresh the webpage to try it again. ${'\n'}This can happen after you have updated the extension. ${'\n\n'}${ex?.toString()}`
+      `无法加载之前保存的设置，请刷新网页后重试。${'\n'}这可能发生在扩展更新后。${'\n\n'}${ex?.toString()}`
     );
 
     if (

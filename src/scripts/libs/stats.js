@@ -557,31 +557,31 @@ export default class Stats {
       (ft) => !ft.video?.decode || !ft.drawEnd
     ).length;
 
-    const legend = `               VERTICAL BARS             MIN        MAX
-BLUE         | Video decoding:    ${videoProcessingRange[0]}ms ${
+    const legend = `               纵向标尺                 最小       最大
+蓝色         | 视频解码：          ${videoProcessingRange[0]}ms ${
       videoProcessingRange[1]
     }ms
-GREEN/YELLOW | Ambient rendering: ${ambientProcessingRange[0]}ms ${
+绿／黄        | 氛围灯渲染：        ${ambientProcessingRange[0]}ms ${
       ambientProcessingRange[1]
     }ms
-GRAY         | Compositing:       ${compositorProcessingRange[0]}ms ${
+灰色         | 合成：              ${compositorProcessingRange[0]}ms ${
       compositorProcessingRange[1]
     }ms
-ORANGE       | Compositing delay 
-RED          | Skipped video frames
+橙色         | 合成延迟
+红色         | 跳过的视频帧
 
-               DOTTED LINES
-WHITE        | when the next video frame will be displayed
-GRAY         | when the next video frame will decoded
-GREEN        | when the video frame will be displayed
+               虚线标记
+白色         | 下一视频帧的预计显示时间
+灰色         | 下一视频帧的预计解码时间
+绿色         | 视频帧的预计显示时间
 
-STATS
-Frames on time: ${(frameTimes.length - delayedFrames - skippedFrames)
+统计
+按时显示：${(frameTimes.length - delayedFrames - skippedFrames)
       .toString()
-      .padStart(3, ' ')} | Delayed: ${delayedFrames
+      .padStart(3, ' ')} | 延迟：${delayedFrames
       .toString()
-      .padStart(3, ' ')} | Skipped: ${skippedFrames.toString().padStart(3, ' ')}
-Ambient rendering budget: ${ambientlightBudgetRange[0]}ms to ${
+      .padStart(3, ' ')} | 跳过：${skippedFrames.toString().padStart(3, ' ')}
+氛围灯渲染预算：${ambientlightBudgetRange[0]}ms 至 ${
       ambientlightBudgetRange[1]
     }ms`;
     this.ambientlightFTLegendElem.childNodes[0].nodeValue = legend;
@@ -592,7 +592,7 @@ Ambient rendering budget: ${ambientlightBudgetRange[0]}ms to ${
 
     if (!this.frameTimesCanvas) {
       this.frameTimesCanvas = new Canvas(width, height);
-      this.frameTimesCanvas.setAttribute('title', 'Click to toggle legend');
+      this.frameTimesCanvas.setAttribute('title', '点击切换图例');
       on(
         this.frameTimesCanvas,
         'click',

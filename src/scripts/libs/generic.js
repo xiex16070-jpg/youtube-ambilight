@@ -508,7 +508,7 @@ export const setWarning = (text) => {
     titleElem.style.color = '#008cff';
     titleElem.style.fontSize = '22px';
     titleElem.style.lineHeight = '28px';
-    titleElem.textContent = 'Ambient light for YouTube™\n';
+    titleElem.textContent = 'YouTube™ 氛围灯\n';
     elem.appendChild(titleElem);
 
     const textElem = document.createElement('div');
@@ -540,13 +540,13 @@ export const setStyleProperty = (elem, name, value, priority = '') => {
 
 export const canvas2DCrashTips = `
 
-Reload the webpage to try it again.
+请刷新网页后重试。
 
-Possible causes:
-- The memory of your GPU is fully used by another application.
-- You have to many YouTube webpages visible at the same time. You GPU can only render a limit amount of ambient lights at the same time.
-- You have changed a setting to a value that is incompatible with your GPU. Undo your last change and refresh the webpage. Or reset all settings with the reset button at the top right.`;
+可能原因：
+- 其他应用已占满 GPU 显存。
+- 同时打开的视频页面过多，GPU 无法同时渲染更多氛围灯。
+- 某项设置与 GPU 不兼容。请撤销最近的更改并刷新网页，或点击右上角的重置按钮恢复所有默认设置。`;
 
 export const canvasWebGLCrashTips = `${canvas2DCrashTips}
 
-Another possible workaround could be to turn off the "Quality" > "WebGL renderer" setting (This is an advanced setting). But if you do so, know that the legacy renderer requires more power.`;
+也可以尝试关闭“画质与性能 > WebGL 渲染器”（高级选项）。请注意，传统渲染器会占用更多资源。`;

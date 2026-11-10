@@ -16,7 +16,7 @@ GitHub：<https://github.com/xiex16070-jpg>
 ## 中文（简体）
 
 ### 名称 / Name
-Ambient light for YouTube™ & Bilibili
+YouTube™ 与哔哩哔哩氛围灯
 
 ### 简短说明 / Short description（不超过 132 字符）
 给 YouTube 和 B 站视频加上氛围灯光，无需额外硬件，灯光跟随画面实时变化。

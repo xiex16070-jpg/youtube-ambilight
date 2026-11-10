@@ -1,32 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
   <meta charset="utf-8" />
-  <title>Ambient light for YouTube&trade; &amp; Bilibili settings</title>
+  <title>YouTube™ 与哔哩哔哩氛围灯设置</title>
   <link rel="stylesheet" href="styles/options.css">
 </head>
 
 <body>
   <main>
-    <h1>Ambient light for YouTube&trade; &amp; Bilibili</h1>
+    <h1>YouTube™ 与哔哩哔哩氛围灯</h1>
     <p>
-      Works on YouTube&trade; and on Bilibili (www.bilibili.com) video pages.<br/><br/>
-      The settings are accessible from video player:<br/><br/>
-      <img src="images/settings-moved-to.png" />
+      支持 YouTube™ 和哔哩哔哩（www.bilibili.com）视频页面。<br/><br/>
+      也可以在视频播放器中打开设置：<br/><br/>
+      <img src="images/settings-moved-to.png" alt="播放器中氛围灯设置入口的位置示意图" />
     </p>
     
-    <h2>I see no settings button</h2>
+    <h2>没有看到设置按钮</h2>
     <p>
-      Please refresh the webpage in the browser.<br/><br/>
-      <i>If after the refresh the settings button is still not shown you can open your browser's console (Press F12) to search for any errors or warnings and report those by:<br/>
-      <a href="https://github.com/WesselKroos/youtube-ambilight/issues" target="_blank">creating an issue</a>
-      or 
-      <a id="feedbackFormLink" href="https://docs.google.com/forms/d/1OU7e3fOXk2NJSppCj4hrAE0lUgi8utccdooX1rUnycU" target="_blank">filling out the feedback form</a>
+      请刷新浏览器中的网页。<br/><br/>
+      <i>如果刷新后仍未显示设置按钮，请按 F12 打开浏览器控制台，查找错误或警告，并通过以下方式反馈：<br/>
+      <a href="https://github.com/WesselKroos/youtube-ambilight/issues" target="_blank">提交问题</a>
+      或
+      <a id="feedbackFormLink" href="https://docs.google.com/forms/d/1OU7e3fOXk2NJSppCj4hrAE0lUgi8utccdooX1rUnycU" target="_blank">填写反馈表</a>
       </i>
     </p>
-    <h2>Fix performance issues</h2>
+    <h2>解决性能问题</h2>
     <p>
-      Follow the <a href="https://github.com/WesselKroos/youtube-ambilight/blob/master/TROUBLESHOOT.md" target="_blank">troubelshoot guide</a> to resolve performance issue
+      请参阅<a href="https://github.com/xiex16070-jpg/youtube-ambilight/blob/main/TROUBLESHOOT.zh-CN.md" target="_blank">性能问题排查指南</a>。
     </p>
 
     <h2>支持作者</h2>
@@ -36,34 +36,34 @@
       </a>
     </p>
 
-    <h2>Import / Export settings</h2>
+    <h2>导入／导出设置</h2>
     <div id="importExportStatus" class="import-export-status"></div>
     <div id="importExportStatusDetails" class="import-export-status-details" tabindex="0"></div>
-    <h3>File storage</h3>
+    <h3>文件</h3>
     <p>
-      <button id="exportFileBtn">Export to file</button>
-      <button id="importFileBtn">Import from file</button>
+      <button id="exportFileBtn">导出到文件</button>
+      <button id="importFileBtn">从文件导入</button>
       <input hidden name="import-settings-file" type="file" accept=".json"/>
     </p>
-    <h3>Cloud storage (Your browser account)</h3>
+    <h3>云端存储（浏览器账号）</h3>
     <p>
-      <button id="exportAccountBtn">Export to cloud</button>
-      <button id="importAccountBtn" disabled>Import from cloud</button>
+      <button id="exportAccountBtn">导出到云端</button>
+      <button id="importAccountBtn" disabled>从云端导入</button>
     </p>
     <p>
       <div id="importableAccountStatus" class="importable-account-status"></div>
     </p>
 
-    <h2>Privacy</h2>
+    <h2>隐私</h2>
     <p>
-      This build does not collect or send any data. There is no crash reporting, no analytics and no remote code.<br/>
-      All settings are stored locally by your browser and never leave your device.<br/>
+      此版本不会收集或发送任何数据，不含崩溃上报、分析统计或远程代码。<br/>
+      所有设置仅保存在浏览器本地，不会离开你的设备。<br/>
     </p>
 
     <div class="warnings-container"></div>
 
     <p>
-      <a id="privacyPolicyLink" href="#" target="_blank">Our privacy policy</a>
+      <a id="privacyPolicyLink" href="#" target="_blank">隐私政策</a>
     </p>
   </main>
   <script src="scripts/options.js"></script>

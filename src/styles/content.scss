@@ -3453,12 +3453,21 @@ html[data-ambientlight-related-scrollbar] {
   z-index: 0;
 }
 
+// Bangumi needs a page-wide background layer. Mounting the fixed glow inside the
+// player makes the player stacking context paint over the synopsis and comments.
+#__next:has(> .ambientlight),
+#bilibili-player:has(> .ambientlight) {
+  position: relative;
+  isolation: isolate;
+}
+
 // `#mirror-vdcon.video-container-v1` is a flex row, so the upstream
 // `display: contents` wrapper would turn every injected element into a flex item
 // of that row: the left column grew and the right column (author, up next, ...)
 // was pushed off screen. Taking the wrapper out of flow leaves the page layout
 // untouched.
 #mirror-vdcon.video-container-v1 > .ambientlight,
+#__next > .ambientlight,
 .video-container-v1 > .ambientlight,
 .bpx-player-container > .ambientlight,
 #bilibili-player > .ambientlight {
@@ -3481,7 +3490,10 @@ html[data-ambientlight-related-scrollbar] {
 // content in every state, while the wrapper still keeps its origin at the viewport
 // so the projector offsets stay correct.
 #mirror-vdcon.video-container-v1 > .ambientlight,
-.video-container-v1 > .ambientlight {
+#__next > .ambientlight,
+.video-container-v1 > .ambientlight,
+.bpx-player-container > .ambientlight,
+#bilibili-player > .ambientlight {
   z-index: -1;
 }
 
@@ -3491,7 +3503,10 @@ html[data-ambientlight-related-scrollbar] {
 // for example) it looked like the light was gone.
 body[data-ambientlight-bilibili-mini] {
   #mirror-vdcon.video-container-v1 > .ambientlight,
-  .video-container-v1 > .ambientlight {
+  #__next > .ambientlight,
+  .video-container-v1 > .ambientlight,
+  .bpx-player-container > .ambientlight,
+  #bilibili-player > .ambientlight {
     z-index: auto;
   }
 }
@@ -3503,6 +3518,7 @@ body[data-ambientlight-bilibili-mini] {
 // position.
 body[data-ambientlight-fixed] {
   #mirror-vdcon.video-container-v1 > .ambientlight,
+  #__next > .ambientlight,
   .video-container-v1 > .ambientlight,
   .bpx-player-container > .ambientlight,
   #bilibili-player > .ambientlight {
@@ -3513,29 +3529,12 @@ body[data-ambientlight-fixed] {
   }
 }
 
-// The right column of a bilibili video page (the danmaku list and the video list)
-// keeps showing the ambient light while its text stays readable: the panels get a
-// translucent background, so the light that is painted behind the page content
-// (see the `z-index: -1` rule above) shines through them, while the text keeps its
-// contrast on the panel colour behind it.
-// The panels inside a card are made transparent, otherwise the light would be
-// dimmed twice (by the card and by the panel inside it).
-html[data-ambientlight-enabled] {
-  --ytal-bilibili-panel: rgba(241, 242, 243, .7);
-  --ytal-bilibili-panel-active: rgba(241, 242, 243, .88);
-}
-
-html[data-ambientlight-enabled].dark,
-html.dark[data-ambientlight-enabled],
-body.dark[data-ambientlight-enabled] {
-  --ytal-bilibili-panel: rgba(35, 37, 39, .7);
-  --ytal-bilibili-panel-active: rgba(35, 37, 39, .88);
-}
-
+// Bilibili panel backgrounds stay clear so the ambientlight can pass through.
+// Only background colors are changed; text and image opacity remain untouched.
 html[data-ambientlight-enabled] {
   #mirror-vdcon .right-container .danmaku-wrap,
   #mirror-vdcon .right-container .video-pod {
-    background-color: var(--ytal-bilibili-panel) !important;
+    background-color: transparent !important;
   }
 
   #mirror-vdcon .right-container .danmaku-wrap .bpx-docker,
@@ -3546,7 +3545,49 @@ html[data-ambientlight-enabled] {
   }
 
   #mirror-vdcon .right-container .video-pod .simple-base-item.active {
-    background-color: var(--ytal-bilibili-panel-active) !important;
+    background-color: transparent !important;
+  }
+
+  // The Bangumi React layout paints an opaque background on its page shell,
+  // unlike the legacy watch page. Let the page-level glow show through it.
+  #__next .home-container {
+    background-color: transparent !important;
+  }
+
+  #__next .main-container {
+    background-color: transparent !important;
+  }
+
+  // Bangumi's sidebar modules share a right-container but use different nested
+  // components for the danmaku, episode, PV and recommendation panels.
+  #__next [class*='right-container'] > *,
+  #__next .main-container > :last-child > *,
+  #__next .bpx-player-collapse.bui,
+  #__next .bpx-player-collapse.bui ~ *,
+  #__next [class*='right-container'] [class*='ep-item'],
+  #__next [class*='right-container'] .simple-base-item {
+    background-color: transparent !important;
+  }
+
+  #__next [class*='right-container'] > * *,
+  #__next .main-container > :last-child > * *,
+  #__next [class*='right-container'] .bui-area,
+  #__next [class*='right-container'] .bui-collapse-wrap,
+  #__next [class*='right-container'] .bui-collapse-header,
+  #__next [class*='right-container'] .bui-collapse-body,
+  #__next [class*='right-container'] .bpx-docker,
+  #__next [class*='right-container'] .simple-base-item:not(.active),
+  #__next .bpx-player-collapse .bui-area,
+  #__next .bpx-player-collapse .bui-collapse-wrap,
+  #__next .bpx-player-collapse .bui-collapse-header,
+  #__next .bpx-player-collapse .bui-collapse-body,
+  #__next .bpx-player-collapse .bpx-docker,
+  #__next .bpx-player-sending-area {
+    background-color: transparent !important;
+  }
+
+  #__next .bpx-player-sending-bar {
+    background-color: transparent !important;
   }
 }
 
@@ -3572,6 +3613,7 @@ body[data-ambientlight-at-top] {
 
 body[data-ambientlight-at-top] {
   #mirror-vdcon.video-container-v1 > .ambientlight,
+  #\__next > .ambientlight,
   .video-container-v1 > .ambientlight,
   .bpx-player-container > .ambientlight,
   #bilibili-player > .ambientlight {
@@ -3600,6 +3642,52 @@ body[data-ambientlight-at-top] {
     text-align: left;
     text-shadow: 0 0 2px rgba(0, 0, 0, .5);
     user-select: none;
+  }
+
+  .ytpa-ambientlight-settings-menu--bilibili {
+    .ytp-menuitem[role='menuitemcheckbox'] .ytp-menuitem-content {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      min-width: 58px;
+    }
+
+    .ytp-menuitem-toggle-checkbox {
+      position: relative;
+      flex: 0 0 30px;
+      box-sizing: border-box;
+      width: 30px;
+      height: 18px;
+      margin: 2px 12px;
+      border-radius: 9px;
+      background-color: #5b6068;
+      transition: background-color .15s ease-out;
+
+      &::after {
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background-color: #fff;
+        content: '';
+        transition: transform .15s ease-out;
+      }
+    }
+
+    .ytp-menuitem[aria-checked='true'] .ytp-menuitem-toggle-checkbox {
+      background-color: #007cc3 !important;
+
+      &::after {
+        transform: translateX(12px);
+      }
+    }
+
+    .ytp-menuitem[aria-disabled='true'] .ytp-menuitem-toggle-checkbox {
+      background-color: #333 !important;
+      opacity: .55;
+    }
   }
 
   .ytal-bezel {

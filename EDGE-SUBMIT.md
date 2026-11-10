@@ -52,13 +52,13 @@
 **Single purpose description**
 
 ```text
-Renders an ambient light effect around the video player on YouTube and Bilibili, based on the colours of the video.
+根据视频画面颜色，在 YouTube 和哔哩哔哩播放器周围渲染动态氛围灯光。
 ```
 
 **Permission justification**（只需要为 `storage` 写理由）
 
 ```text
-storage: Required to save the extension's own settings (ambient light options) locally in the browser. No data leaves the device and no network requests are made.
+storage：用于在浏览器本地保存扩展设置。数据不会离开设备，也不会发送网络请求。
 ```
 
 **Are you using remote code?** → 选 **No, I am not using remote code**
@@ -75,7 +75,7 @@ https://github.com/xiex16070-jpg/youtube-ambilight/blob/main/PRIVACY-POLICY.md
 
 ## 6. Store listing（商店详情）
 
-> Extension name 与 Short description 由 manifest 决定，商店里只读（当前：`Ambient light for YouTube™ & Bilibili` / `Immerse yourself in YouTube™ and Bilibili videos with ambient light!`）。要改必须改 `src/manifest.json` 后重新打包。
+> 扩展名称与简短说明由 manifest 决定，商店中只读（当前：`YouTube™ 与哔哩哔哩氛围灯` / `为 YouTube™ 和哔哩哔哩视频添加随画面变化的氛围灯光。`）。要修改需编辑 `src/manifest.json` 后重新打包。
 
 | 字段 | 值 / 文件 |
 | --- | --- |
@@ -90,12 +90,12 @@ https://github.com/xiex16070-jpg/youtube-ambilight/blob/main/PRIVACY-POLICY.md
 ## 7. Notes for certification（给审核员）
 
 ```text
-No test account is required.
+无需测试账号。
 
-1. Open a video page, for example https://www.bilibili.com/video/BV1GJ411x7h7/ or https://www.youtube.com/watch?v=dQw4w9WgXcQ
-2. Play the video. Within about 2 seconds an ambient light glow is rendered around the player.
-3. A settings button is added at the bottom-right corner of the player; clicking it opens the settings panel.
-4. The glow follows the video colours in real time and no network requests are made.
+1. 打开视频页面，例如 https://www.bilibili.com/video/BV1GJ411x7h7/ 或 https://www.youtube.com/watch?v=dQw4w9WgXcQ
+2. 播放视频，播放器周围约 2 秒内会出现氛围灯光。
+3. 播放器右下角会显示设置按钮，点击后打开设置面板。
+4. 灯光会实时跟随视频画面变化，扩展不会发送网络请求。
 ```
 
 ## 8. 提交与后续

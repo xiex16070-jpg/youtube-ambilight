@@ -139,8 +139,10 @@ export class WebGLContext {
   }
 
   setWebGLWarning(action = 'restore') {
+    const actionText =
+      action === '3 times restore' ? '连续 3 次恢复' : '恢复';
     this.setWarning(
-      `Failed to ${action} the WebGL renderer from a GPU crash.${canvasWebGLCrashTips}`
+      `GPU 崩溃后无法${actionText} WebGL 渲染器。${canvasWebGLCrashTips}`
     );
   }
 

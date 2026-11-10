@@ -225,7 +225,7 @@ export default class Ambientlight {
       error.details.videoIsInDocument = document.contains(videoElem);
       error.details.videoIsInBody = document.body.contains(videoElem);
       error.details.videoTree = getNodeTreeString(videoElem);
-      setWarning(`Failed to load.\n${error.message}`);
+      setWarning(`加载失败。\n${error.message}`);
       throw error;
     }
     this.videoPlayerElem.dataset.ytalElem = 'video-player';
@@ -247,7 +247,7 @@ export default class Ambientlight {
           )}`
         );
         error.details = getPageElems();
-        setWarning(`Failed to load.\n${error.message}`);
+        setWarning(`加载失败。\n${error.message}`);
         throw error;
       }
 
@@ -689,7 +689,7 @@ export default class Ambientlight {
       },
       encrypted: () => {
         this.settings.setWarning(
-          'Unable to display an ambient light because YouTube has applied DRM protection to this video',
+          '此视频受 YouTube 数字版权管理（DRM）保护，无法显示氛围灯。',
           true,
           true,
           'encrypted'
@@ -1806,7 +1806,7 @@ Video ready state: ${readyStateToString(videoElem?.readyState)}`);
   initVR = () => {
     if (getBrowser() === 'Firefox') {
       this.settings.setWarning(
-        'Ambient light does not support VR videos',
+        '当前浏览器暂不支持 VR 视频氛围灯。',
         false,
         false
       );
@@ -2236,7 +2236,7 @@ Video ready state: ${readyStateToString(videoElem?.readyState)}`);
         }
         this.videoContainerElemMissingWarning = true;
         this.settings.setWarning(
-          'Unable to sync the video with the ambient light. The html5-video-container element does not exist on the page. This is likely due to a update of the YouTube design. This will probably soon be fixed in a new version.'
+          '无法让视频与氛围灯同步：页面中缺少 html5-video-container 元素。这可能是 YouTube 页面改版造成的，后续版本可能会修复。'
         );
       }
     } else if (
@@ -3089,11 +3089,11 @@ Video ready state: ${readyStateToString(videoElem?.readyState)}`);
   setDrawWarning = (ex) => {
     const message =
       ex.name === 'SecurityError'
-        ? 'A refresh could help, but it is most likely that your browser does not allow the ambient light to read the video pixels of this specific YouTube video. You can probably watch other YouTube videos without this problem.'
-        : `A refresh of the page might help. If not, there could be a specific problem with this YouTube video. Or searching the error message below might help.\n\nError: ${ex.name}\nReason: ${ex.message}`;
+        ? '刷新网页可能有帮助。不过，更可能是浏览器不允许氛围灯读取这段 YouTube 视频的画面像素；其他视频通常不受影响。'
+        : `刷新网页可能有帮助。如果仍无法解决，可能是这段 YouTube 视频存在特殊问题。也可以搜索以下错误信息。\n\n错误类型：${ex.name}\n原因：${ex.message}`;
 
     this.settings.setWarning(
-      `Failed to display the ambient light\n\n${message}`
+      `氛围灯显示失败\n\n${message}`
     );
   };
 

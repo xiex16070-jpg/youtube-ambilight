@@ -1,85 +1,21 @@
-This extension will surround YouTube videos with ambient light inside your browser. No need for extra hardware like lightstrips or smart lights like ambilight, it's all in your browser!
+为 YouTube™ 和哔哩哔哩视频添加随画面变化的氛围灯光。扩展会提取视频画面颜色，在播放器周围渲染柔和的动态光晕，无需灯带、智能灯泡或其他额外硬件。
 
+支持 YouTube 视频页、哔哩哔哩视频页以及两家的内嵌播放器。
 
-Requirement:
+主要功能
 
-A video card with a score of at least 5000 points in the PassMark G3D Mark benchmark is recommended.
-Check your video card's score here: https://www.videocardbenchmark.net/gpu_list.php
-With a score lower than 5000 the extension will still work but it is likely that the YouTube video page will be slow and/or stuttering.
+1. 氛围灯：调整模糊、扩散和渐变效果。
+2. 黑边处理：检测并去除上下黑边、左右黑边和彩边，也可将视频扩展至去除的黑边区域。
+3. 视频显示：分别调整小窗、影院和全屏模式下的视频大小，并设置阴影。
+4. 页面效果：调整页面内容的阴影和背景效果，控制相关视频列表、滚动条和影院模式下的页面显示。
+5. 画质与性能：选择同步方式、限制帧率、查看性能统计，并启用平滑运动等选项。
+6. 画面滤镜：调整亮度、对比度、色彩强度和饱和度。
 
+高级选项还包括黑边检测参数、各方向的氛围灯开关、去色带、减少闪烁、帧混合及浏览器兼容性修复。
 
-Features:
+隐私与安全
 
-1. Ambient light
-- Blur
-- Spread
+扩展只在 YouTube 和哔哩哔哩视频页面运行。此版本不收集、不上传任何数据，不发送网络请求，也不包含崩溃上报、统计分析或远程代码。设置仅保存在浏览器本地。详情请查看 PRIVACY-POLICY.md。
 
-2. Black bars
-- Remove black bars
-- Remove black sidebars
-- Also remove colored bars
-- Fill video to screen
-
-3. Video
-- Size (scale/zoom)
-- Shadow
-
-4. Video page content
-- Shadow
-- Hide when scrolled to top
-- Hide in theater mode
-- Hide scrollbar
-
-5. Quality
-- Synchronization (Energy, Balanced, High, Perfect)
-
-6. General
-- Switch to the light theme when turned off
-- Enabled/Disabled
-
-
-Advanced features:
-1. Ambient light
-- Edge size
-- Fade out start
-- Fade out curve
-- Debanding (noise/dithering)
-
-2. Directions
-- Top, right, bottom, left
-
-3. Filters
-- Brightness
-- Contrast
-- Saturation
-
-4. Black bars
-- Black bar detection offset
-- Black bar size (manual control)
-- Reset black bars next video
-
-5. Video page content
-- Shadow only on text and buttons
-- Images transparency
-
-6. Quality
-- Show framerate
-- Limit framerate (per second)
-- Sync video with ambient light
-- Smooth motion (frame blending)
-
-7. General
-- Enable in fullscreen
-
-
-Contribute
-
-You view the source code and can contribute to this open source project at https://github.com/WesselKroos/youtube-ambilight
-
-
-Privacy & Security
-
-This extension only runs on tabs that start with the url https://www.youtube.com. The extension will only activate the ambient light effect on YouTube's /watch page
-
-The only requests being sent are crash reports to Sentri.io. No other requests are sent to any webserver, website or api. 
-While doing so we take into account your Do Not Track preference. For more information about Do Not Track visit https://allaboutdnt.com
+本项目基于 Wessel Kroos 的 youtube-ambilight 开源项目进行二次开发，采用 MIT 协议。源码、问题反馈与中文性能排查指南：
+https://github.com/xiex16070-jpg/youtube-ambilight

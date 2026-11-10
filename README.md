@@ -4,18 +4,17 @@
   <img align="right" src="src/images/donate.svg" title="支持作者" height="33">
 </a>
 
-[![Ambient light for YouTube™ & Bilibili](assets/heading.png)](https://github.com/xiex16070-jpg/youtube-ambilight#readme)
+[![YouTube™ 与哔哩哔哩氛围灯](assets/heading.png)](https://github.com/xiex16070-jpg/youtube-ambilight#readme)
 
-![Bilibili video page with ambient light](assets/readme/bilibili-video-page.jpg)
+![哔哩哔哩视频页氛围灯效果](assets/readme/bilibili-video-page.jpg)
 
-# Ambient light for YouTube™ & Bilibili
+# YouTube™ 与哔哩哔哩氛围灯
 
 > **作者 (Author)：** [Akari Akaza](https://github.com/xiex16070-jpg) · GitHub 昵称 **[@xiex16070-jpg](https://github.com/xiex16070-jpg)**
 > **仓库 (Repository)：** <https://github.com/xiex16070-jpg/youtube-ambilight>
 > **原项目 (Upstream)：** [WesselKroos/youtube-ambilight](https://github.com/WesselKroos/youtube-ambilight) · MIT
 
-Immerse yourself in YouTube™ and Bilibili videos with ambient light!
-让 YouTube™ 和 B 站（哔哩哔哩）的视频被氛围灯光包围 —— 不需要灯带、智能灯泡等额外硬件，一切都在浏览器里完成。
+为 YouTube™ 和哔哩哔哩视频添加随画面变化的氛围灯光，无需灯带、智能灯泡等额外硬件，一切都在浏览器中完成。
 
 ## ✨ 本分支做了什么（相对原版）
 
@@ -30,13 +29,13 @@ Immerse yourself in YouTube™ and Bilibili videos with ambient light!
 
 ## 🖼 截图
 
-![B 站视频页（浅色主题，右栏文字清晰）](assets/readme/bilibili-video-page.jpg)
+![B 站视频页氛围灯效果（浅色主题，右栏文字清晰）](assets/readme/bilibili-video-page.jpg)
 
 | 设置菜单 | 小窗播放器 |
 | --- | --- |
-| ![settings menu](assets/readme/settings-menu.jpg) | ![mini player](assets/readme/mini-player.jpg) |
+| ![设置菜单](assets/readme/settings-menu.jpg) | ![小窗播放器](assets/readme/mini-player.jpg) |
 
-## 安装 Installation
+## 安装
 
 ### 本地加载（开发 / 自用）
 
@@ -56,12 +55,12 @@ npm run build      # 生成 /dist（Manifest V3）
 Chrome Web Store 与 Microsoft Edge Add-ons 的上架包由 `npm run package` 生成，上架步骤见 [STORE-LISTING.md](STORE-LISTING.md)。
 （上架完成后把商店链接补充到这里。）
 
-## 最小配置要求 Minimum requirements
+## 最低配置要求
 
-### 性能 Performance
+### 性能
 建议使用 PassMark Video Card Benchmark 分数在 1000 分以上的显卡，可在 https://www.videocardbenchmark.net/gpu_list.php 查询。
 分数较低时扩展仍可使用，但页面可能变慢或掉帧。
-> 遇到性能问题请参考 [Troubleshoot guide](TROUBLESHOOT.md)。
+> 遇到性能问题请参考[性能问题排查指南](TROUBLESHOOT.zh-CN.md)。
 
 ### 浏览器版本 Browser versions
 | 构建 | 浏览器 | 版本 | 说明 |
@@ -71,15 +70,12 @@ Chrome Web Store 与 Microsoft Edge Add-ons 的上架包由 `npm run package` �
 | Manifest V2（`npm run package` 的 mv2 包） | Chromium | 80 | [可选链操作符 (?.)](https://caniuse.com/mdn-javascript_operators_optional_chaining) |
 | Manifest V2（`npm run package` 的 mv2 包） | Firefox | 74 | [可选链操作符 (?.)](https://caniuse.com/mdn-javascript_operators_optional_chaining) |
 
-## Privacy & Security
-Read the [privacy policy](PRIVACY-POLICY.md)（扩展只在 `youtube.com` 与 `bilibili.com` 的视频页运行，不发送任何网络请求、不收集任何数据）。
+## 隐私与安全
+请阅读[隐私政策](PRIVACY-POLICY.md)。扩展只在 `youtube.com` 与 `bilibili.com` 的视频页运行，不发送网络请求，也不收集数据。
 
-## Report, request or contribute
+## 反馈与贡献
 
-Feel free to
-- report bugs at [/youtube-ambilight/issues](https://github.com/xiex16070-jpg/youtube-ambilight/issues)
-- request a feature at [/youtube-ambilight/issues](https://github.com/xiex16070-jpg/youtube-ambilight/issues)
-- or ask a question at [/youtube-ambilight/issues](https://github.com/xiex16070-jpg/youtube-ambilight/issues)
+欢迎通过 [GitHub Issues](https://github.com/xiex16070-jpg/youtube-ambilight/issues) 报告问题、提出功能建议或提问。
 
 也欢迎给原项目 [WesselKroos/youtube-ambilight](https://github.com/WesselKroos/youtube-ambilight) 点 Star、提 Issue 或 PR。
 
@@ -103,7 +99,7 @@ Feel free to
 
 > 扩展内的链接也会跳到这里。（作者：Akari Akaza · https://github.com/xiex16070-jpg/youtube-ambilight）
 
-## Development
+## 开发
 
 ```bash
 npm install
@@ -116,7 +112,7 @@ npm run package         # 构建并打包 releases/*.zip（商店包 + MV2 包�
 - 修改源码后重新 `npm run build`，再到 `chrome://extensions/` 点击扩展卡片上的刷新按钮。
 - 上架清单文案与截图：[STORE-LISTING.md](STORE-LISTING.md)、`store/screenshots/`。
 
-## 授权与致谢 License & credits
+## 授权与致谢
 
 本分支基于 [WesselKroos/youtube-ambilight](https://github.com/WesselKroos/youtube-ambilight)（MIT License, Copyright (c) 2017 Wessel Kroos）二次开发，遵循同样的 MIT 协议，保留原作者的版权声明。
 
